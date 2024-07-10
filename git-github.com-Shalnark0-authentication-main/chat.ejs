@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>WELCOME BACK <%= user.username %></h1>
+  <form action="/chat" method="POST" autocomplete="off">
+    
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Hello..." type="text" required></textarea>
+    
+    <button>Send Message</button>
+  </form>
+  <form action="" method="POST">    
+    <button>Upload Image</button>
+  </form>
+  <a href="/log-out">LOG OUT</a>
+
+  <h2>Messages</h2>
+  <ul>
+    <% messages.forEach(function(message) { %>
+      <li>
+        <strong><%= message.user.username %></strong>: <%= message.text %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message Form</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <% if (user) { %>
+    <h1>WELCOME BACK <%= user.username %></h1>
+    <form action="/chat" method="POST" autocomplete="__away">
+      <label for="title">Title</label>
+      <input id="title" name="title" placeholder="Title" type="text" required />
+      
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Hello..." type="text" required></textarea>
+
+      <button>Send Message</button>
+    </form>
+    <a href="/log-out">LOG OUT</a>
+    
+  <% } else { %>
+    <h1>Please log in</h1>
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="Username" type="text" required />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required />
+      <button>Log In</button>
+    </form>
+    <form action="/sign-up" method="GET">
+      <button type="submit">Sign up</button>
+    </form>
+  <% } %>
+</body>
+</html>
